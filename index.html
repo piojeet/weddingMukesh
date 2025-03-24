@@ -47,6 +47,13 @@
             position: relative;
         }
 
+        @media only screen and (max-width: 768px) {
+            .invitation-container {
+            padding-bottom: 150px;
+        }
+
+        }
+
         header {
             text-align: center;
             margin-bottom: 60px;
@@ -723,7 +730,7 @@
         const testButton = document.createElement('button');
         testButton.textContent = 'Celebration 🎉';
         testButton.style.position = 'fixed';
-        testButton.style.bottom = '80px';
+        testButton.style.bottom = '20px';
         testButton.style.right = '20px';
         testButton.classList.add('testButton');
         testButton.style.zIndex = '1000';
