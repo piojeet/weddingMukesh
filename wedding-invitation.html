@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मुकेश और जूही विवाह</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Core styles and variables */
+        :root {
+            --primary: #d4af37;
+            /* Gold */
+            --secondary: #5d4037;
+            /* Brown */
+            --background: #faf7f2;
+            /* Off-white */
+            --text: #333;
+            --accent: #c5b358;
+            /* Light gold */
+            --font-main: 'Georgia', serif;
+            --font-accent: 'Cormorant Garamond', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('4728244.jpg') no-repeat;
+            background-position: center;
+            background-size: cover;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header and invitation container */
+        .invitation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .names {
+            font-family: var(--font-accent);
+            font-size: 64px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            /* font-weight: normal; */
+        }
+
+        .ampersand {
+            font-family: var(--font-accent);
+            font-size: 72px;
+            color: var(--primary);
+            margin: 0 15px;
+            display: inline-block;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        .date-heading {
+            font-size: 24px;
+            font-weight: normal;
+            margin-bottom: 40px;
+            color: var(--secondary);
+        }
+
+        /* Main content */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .couple-photo {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .couple-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .couple-photo:hover img {
+            transform: scale(1.03);
+        }
+
+        .couple-photo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.2));
+        }
+
+        /* Details section */
+        .details {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px;
+            border: 2px solid var(--primary);
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+        }
+
+        .details::before,
+        .details::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--primary);
+        }
+
+        .details::before {
+            top: -15px;
+            left: -15px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .details::after {
+            bottom: -15px;
+            right: -15px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .details h2 {
+            font-family: var(--font-accent);
+            font-size: 32px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .details p {
+            font-size: 18px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .detail-item svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            fill: var(--primary);
+        }
+
+        .address {
+            font-style: italic;
+        }
+
+        /* Countdown timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-family: var(--font-accent);
+            font-size: 48px;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--secondary);
+        }
+
+        /* SVG Animations */
+        .petal-container,
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .petal,
+        .confetti {
+            position: absolute;
+            opacity: 0;
+        }
+
+        /* RSVP Section */
+        .rsvp {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .rsvp h2 {
+            font-family: var(--font-accent);
+            font-size: 32px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .button,
+        .testButton {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-main);
+        }
+
+        .button:hover,
+        .testButton:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Celebration effects */
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .names {
+                font-size: 42px;
+            }
+
+            .ampersand {
+                font-size: 48px;
+            }
+
+            .countdown {
+                flex-wrap: wrap;
+            }
+
+            .countdown-item {
+                min-width: 60px;
+            }
+
+            .countdown-number {
+                font-size: 36px;
+            }
+
+            .details {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .names {
+                font-size: 32px;
+            }
+
+            .ampersand {
+                font-size: 36px;
+                margin: 0 5px;
+            }
+
+            .date-heading {
+                font-size: 18px;
+            }
+
+            .countdown-item {
+                min-width: 50px;
+            }
+
+            .countdown-number {
+                font-size: 28px;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-10px) rotate(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes firework {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .images-wraper {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            margin-bottom: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invitation-container">
+        <!-- SVG Animation Containers -->
+        <div class="petal-container" id="petalContainer"></div>
+        <div class="confetti-container" id="confettiContainer"></div>
+
+        <header>
+            <h1 class="names">मुकेश <span class="ampersand">और</span> जूही</h1>
+            <h2 class="date-heading">अप्रैल 29, 2025</h2>
+        </header>
+
+        <div class="images-wraper">
+            <!-- Swiper -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="couple-photo">
+                            <img src="images/WhatsApp Image 2025-03-24 at 12.18.09 PM.jpeg" alt="Julia and Michael">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="couple-photo">
+                            <img src="images/WhatsApp Image 2025-03-24 at 12.18.47 PM.jpeg" alt="Julia and Michael">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="couple-photo">
+                            <img src="images/WhatsApp Image 2025-03-24 at 12.19.29 PM.jpeg" alt="Julia and Michael">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="couple-photo">
+                            <img src="images/WhatsApp Image 2025-03-24 at 12.21.09 PM.jpeg" alt="Julia and Michael">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="couple-photo">
+                            <img src="images/WhatsApp Image 2025-03-24 at 12.22.03 PM.jpeg" alt="Julia and Michael">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="couple-photo">
+                            <img src="images/WhatsApp Image 2025-03-24 at 12.24.43 PM.jpeg" alt="Julia and Michael">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+
+
+
+            <div class="details">
+                <h2>We're getting married!</h2>
+                <p>Please join us to celebrate our special day</p>
+
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">0</div>
+                        <div class="countdown-label">दिन</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">0</div>
+                        <div class="countdown-label">घंटे</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">0</div>
+                        <div class="countdown-label">मिनट</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">0</div>
+                        <div class="countdown-label">सेकंड</div>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    <p><strong>स्थान:</strong> पोलिगंज</p>
+                </div>
+
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                    </svg>
+                    <p><strong>विवाह समारोह:</strong>  शाम 4:00 बजे</p>
+                </div>
+
+                <p class="address">पोलिगंज, मझोला के पास रेलवे लाइन क्रॉसिंग</p>
+
+                <p>Dinner & Dancing to follow</p>
+            </div>
+
+            <div class="rsvp">
+                <h2>क्या आप हमारे साथ जुड़ेंगे?</h2>
+                <p>कृपया 29 अप्रैल, 2025 तक हमें सूचित करें कि आप समारोह में शामिल हो रहे हैं या नहीं।</p>
+                <button class="button" id="rsvpButton">पुष्टि करें</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio element for background music -->
+    <audio id="weddingMusic">
+        <source src="wedding-221744.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="celebration" id="celebration"></div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
+
+    <script>
+        // Set the wedding date (yyyy-mm-dd)
+        const weddingDate = new Date('2025-04-29T16:00:00');
+
+        // Update countdown timer
+        function updateCountdown() {
+            const now = new Date();
+            const diff = weddingDate - now;
+
+            // Check if wedding day has arrived
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+
+                // Trigger celebration
+                startCelebration();
+
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        // Initial countdown update
+        updateCountdown();
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // SVG Petals Animation
+        function createPetals() {
+            const petalContainer = document.getElementById('petalContainer');
+            const colors = ['#f8d7da', '#f5c3c8', '#ffcfd7', '#ffdcd5', '#f8e9e9'];
+
+            const createPetal = () => {
+                const petal = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                petal.setAttribute('width', '30');
+                petal.setAttribute('height', '30');
+                petal.setAttribute('viewBox', '0 0 30 30');
+                petal.classList.add('petal');
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', 'M15,3 C20,10 25,15 15,25 C5,15 10,10 15,3 Z');
+                path.setAttribute('fill', colors[Math.floor(Math.random() * colors.length)]);
+
+                petal.appendChild(path);
+                petalContainer.appendChild(petal);
+
+                // Random position and animation
+                const startX = Math.random() * window.innerWidth;
+                petal.style.left = `${startX}px`;
+                petal.style.top = `${window.innerHeight + 10}px`;
+
+                const scale = 0.3 + Math.random() * 0.7;
+                const duration = 10 + Math.random() * 20;
+                const delay = Math.random() * 5;
+
+                petal.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
+                petal.style.animation = `float ${duration}s linear ${delay}s infinite`;
+
+                // Remove old petals to avoid memory issues
+                setTimeout(() => {
+                    petal.remove();
+                }, (duration + delay) * 1000);
+            };
+
+            // Create petals at intervals
+            setInterval(createPetal, 300);
+
+            // Initial petals
+            for (let i = 0; i < 10; i++) {
+                createPetal();
+            }
+        }
+
+        // Start petal animation
+        createPetals();
+
+        // Celebration effect (fireworks and confetti)
+        function startCelebration() {
+            const celebration = document.getElementById('celebration');
+            celebration.style.display = 'block';
+
+            // Create fireworks
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    createFirework();
+                }, i * 4000);
+            }
+
+            // Create confetti
+            createConfetti();
+
+            // Play background music
+            const weddingMusic = document.getElementById('weddingMusic');
+            weddingMusic.play().catch(error => {
+                console.log("Autoplay was prevented:", error);
+                // Show a play button if autoplay fails
+                const playButton = document.createElement('button');
+                playButton.innerText = 'Play Music';
+                playButton.addEventListener('click', () => {
+                    weddingMusic.play();
+                });
+                document.body.appendChild(playButton);
+            })
+
+        }
+
+        function createFirework() {
+            const celebration = document.getElementById('celebration');
+            const firework = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            firework.setAttribute('width', '300');
+            firework.setAttribute('height', '300');
+            firework.setAttribute('viewBox', '0 0 100 100');
+            firework.style.position = 'absolute';
+            firework.style.left = `${Math.random() * 80}%`;
+            firework.style.top = `${Math.random() * 60}%`;
+
+            const colors = ['#d4af37', '#f7d375', '#e6b422', '#c5b358', '#ffd700'];
+
+            // Create particles
+            for (let i = 0; i < 20; i++) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                const angle = (i / 20) * Math.PI * 2;
+
+                line.setAttribute('x1', '50');
+                line.setAttribute('y1', '50');
+                line.setAttribute('x2', 50 + Math.cos(angle) * 40);
+                line.setAttribute('y2', 50 + Math.sin(angle) * 40);
+                line.setAttribute('stroke', colors[Math.floor(Math.random() * colors.length)]);
+                line.setAttribute('stroke-width', '2');
+
+                firework.appendChild(line);
+            }
+
+            celebration.appendChild(firework);
+
+            // Animation
+            firework.style.animation = 'firework 1s ease-out forwards';
+
+            // Remove after animation
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            const colors = ['#d4af37', '#5d4037', '#f8d7da', '#c5b358', '#ffd700'];
+
+            // Create confetti pieces
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+
+                    const size = 5 + Math.random() * 10;
+                    confetti.style.width = `${size}px`;
+                    confetti.style.height = `${size}px`;
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+
+                    const duration = 3 + Math.random() * 4;
+                    confetti.style.animation = `confettiFall ${duration}s linear forwards`;
+
+                    confettiContainer.appendChild(confetti);
+
+                    // Remove after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, duration * 1000);
+                }, i * 50);
+            }
+        }
+
+        // RSVP button functionality (demo only)
+        document.getElementById('rsvpButton').addEventListener('click', function () {
+            alert('आपकी उपस्थिति की पुष्टि हो गई है! मुकेश और जूही के विवाह समारोह में आपका स्वागत है।');
+        });
+
+        // Test celebration button (for demo only)
+        // Uncomment to add a test button
+
+        const testButton = document.createElement('button');
+        testButton.textContent = 'Celebration 🎉';
+        testButton.style.position = 'fixed';
+        testButton.style.bottom = '20px';
+        testButton.style.right = '20px';
+        testButton.classList.add('testButton');
+        testButton.style.zIndex = '1000';
+        testButton.addEventListener('click', startCelebration);
+        document.body.appendChild(testButton);
+
+    </script>
+
+
+</body>
+
+</html>
