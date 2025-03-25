@@ -252,7 +252,9 @@
 
         .button,
         .testButton {
-            display: inline-block;
+            display: block;
+            width: fit-content;
+            margin: auto auto;
             padding: 12px 30px;
             background-color: var(--primary);
             color: white;
@@ -264,6 +266,7 @@
             border: none;
             cursor: pointer;
             font-family: var(--font-main);
+            margin-bottom: 4rem;
         }
 
         .button:hover,
@@ -501,21 +504,21 @@
                 <p>Dinner & Dancing to follow</p>
             </div>
 
-            <div class="rsvp">
+            <!-- <div class="rsvp">
                 <h2>क्या आप हमारे साथ जुड़ेंगे?</h2>
                 <p>कृपया 29 अप्रैल, 2025 तक हमें सूचित करें कि आप समारोह में शामिल हो रहे हैं या नहीं।</p>
                 <button class="button" id="rsvpButton">पुष्टि करें</button>
-            </div>
+            </div> -->
         </div>
     </div>
-
+    
+    <div class="celebration" id="celebration"></div>
     <!-- Audio element for background music -->
     <audio id="weddingMusic">
         <source src="wedding-221744.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <div class="celebration" id="celebration"></div>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -720,18 +723,18 @@
         }
 
         // RSVP button functionality (demo only)
-        document.getElementById('rsvpButton').addEventListener('click', function () {
-            alert('आपकी उपस्थिति की पुष्टि हो गई है! मुकेश और जूही के विवाह समारोह में आपका स्वागत है।');
-        });
+        // document.getElementById('rsvpButton').addEventListener('click', function () {
+        //     alert('आपकी उपस्थिति की पुष्टि हो गई है! मुकेश और जूही के विवाह समारोह में आपका स्वागत है।');
+        // });
 
         // Test celebration button (for demo only)
         // Uncomment to add a test button
 
         const testButton = document.createElement('button');
         testButton.textContent = 'Celebration 🎉';
-        testButton.style.position = 'fixed';
-        testButton.style.bottom = '20px';
-        testButton.style.right = '20px';
+       // testButton.style.position = 'fixed';
+       // testButton.style.bottom = '20px';
+      //  testButton.style.right = '20px';
         testButton.classList.add('testButton');
         testButton.style.zIndex = '1000';
         testButton.addEventListener('click', startCelebration);
